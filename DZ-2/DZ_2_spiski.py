@@ -17,10 +17,10 @@ if (b <= n):
     b=b-1
     c=int(input('Введите конец среза: '))
     if (c <= n):
-    	for i in range(b,c):
-    		print(lst[i])
+        for i in range(b,c):
+            print(lst[i])
     else:
-    	print ('Неверное число')
+        print ('Неверное число')
 else:
     print ('Неверное число')
 
@@ -28,10 +28,10 @@ else:
 print ('\nЗадание 3 (Поиск количества студентов, в именах которых есть буква "р")\n')
 x=0
 for ln in lst:
-	if 'р' in ln:
-		lambda x:x+1 
-	else:
-		continue
+    if 'р' in ln:
+        x=x+1 
+    else:
+        continue
 print (x)
 
 
@@ -47,4 +47,6 @@ for i in lst:
     else:
         students[ names.index(name) ].append(i)
 
-print(students)
+
+print (students)
+

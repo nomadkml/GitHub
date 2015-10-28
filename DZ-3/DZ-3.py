@@ -6,10 +6,15 @@ flnm = 'cars.pickle'
 if os.path.exists(flnm):
 	f = open(flnm, 'rb')
 	allcars = pickle.load(f)
+	dict_cars={}
+	for i in range(len(allcars)): # это костыль. Изначально прога делалась с помощью списков. Чтобы всё заново не переделывать, для фильтрации/поискаделаем словарь здесь.
+		dict_cars.update({allcars[i][0]:allcars[i][1]})
 
 else:
 	allcars=[]
 
+
+#1 Ввод и вывод марки и мощности автомобиля:
 
 while True:
 	wtd=input('Ввести или Вывести? ')
@@ -31,10 +36,7 @@ while True:
 					print ('Марка автомобиля может содержать только цифры')
 
 			data = [car,power]
-			print (type(data))
 			allcars.append(data)
-			print (type(allcars))
-
 
 
 			f=open(flnm, 'wb')
@@ -46,7 +48,16 @@ while True:
 			if os.path.exists(flnm):
 				q = open(flnm, 'rb')
 				allcars = pickle.load(q)
-				for i in allcars:
+				
+				allcars_s_c=sorted(allcars) # сортировка по модели
+
+
+				allcars_s_p=sorted(allcars, key=lambda car_n:car_n[1]) # сортировка по мощности
+				print ('Сортировка по модели:')
+				for i in allcars_s_c:
+					print (i)
+				print ('Сортировка по мощности:')
+				for i in allcars_s_p:
 					print (i)
 				break
 			else:
@@ -55,5 +66,6 @@ while True:
 	else:
 		print ('Неверное значение, должно быть "Ввести или Вывести"')
 
-	
+
+#2 Сортировка своим методом:
 	
