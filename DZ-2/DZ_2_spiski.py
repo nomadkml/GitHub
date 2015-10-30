@@ -38,15 +38,23 @@ print (x)
 print ('\nЗадание 4 (Поиск студентов с одинаковыми именами, создание списков таких студентов)\n')
 
 names = []
+names1=[]
 students = []
 for i in lst:
     name = i.split()[0]
+    names1.append(name)
     if name not in students:
         names.append(name)
         students.append([i])
     else:
         students[ names.index(name) ].append(i)
 
-
 print (students)
+
+names_set=sorted(set(names))
+
+
+
+
+
 
