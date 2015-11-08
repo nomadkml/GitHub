@@ -1,5 +1,4 @@
-import pickle, sys
-import os
+import pickle, sys, os
 
 
 
@@ -44,7 +43,7 @@ def proverka(func):
 	else:
 		return var
 
-# функция проверки того, что марка состоит только из букв латинского или русского алфавитов. Мощность только из цифр.
+# функция ввода марки автомобиля проверки того, что она состоит только из букв латинского или русского алфавитов. Мощность только из цифр.
 def alpha():  
 
 	car=in_out('Введите марку автомобиля')
@@ -53,7 +52,7 @@ def alpha():
 	else:
 		return None, None
 
-# функция проверки того, что можность состоит только из цифр.
+# функция ввода можности автомобиля и проверки того, что она состоит только из цифр.
 def digit(): 
 	temp=in_out('Введите мощность автомобиля')
 	power=int(temp)
@@ -104,40 +103,49 @@ def cycle():
 
 # функция поиска по названию
 def search_name():
-	car_search = in_out ('Введите модель автомобиля или слово для поиска: ')
-	for i in range(len(keys_list)):
-		if car_search in keys_list[i]:
-			print (keys_list[i])
-			sys.exit(0)
+	if len(keys_list) == 0:
+		print ('В базе нет ни одной записи')
+
+	else:
+		car_search = in_out ('Введите модель автомобиля или слово для поиска: ')
+		for i in range(len(keys_list)):
+			if car_search in keys_list[i]:
+				print (keys_list[i], '-', values_list[i])
+				sys.exit(0)
 
 #функция поиска по мощности:
 def search_power(values_list):
-	while True:
-		P1=input('Введите первое значение из промежутка: ')
-		P2=input('Введите второе значение из промежутка (большее): ')
+	if len(values_list) == 0:
+		print ('В базе нет ни одной записи')
 
-		if P1.isdigit()==True and P2.isdigit()==True:
+	else:
+		while True:
+			P1=input('Введите первое значение из промежутка: ')
+			P2=input('Введите второе значение из промежутка (большее): ')
 
-			print ('Модели автомобилей с мощностью больше, чем', P1,':')
-			for i in range(len(values_list)):
-				if int(P1)<int(values_list[i]):
-					print (keys_list[i])
+			if P1.isdigit()==True and P2.isdigit()==True:
+
+				print ('Модели автомобилей с мощностью больше, чем', P1,':')
+				for i in range(len(values_list)):
+					if int(P1)<int(values_list[i]):
+						print (keys_list[i], '-', values_list[i])
 
 
-			print ('Модели автомобилей с мощностью меньше, чем', P1,':')
-			for j in range(len(values_list)):
-				if int(P1)>int(values_list[j]):
-					print (keys_list[j])
+				print ('Модели автомобилей с мощностью меньше, чем', P1,':')
+				for i in range(len(values_list)):
+					if int(P1)>int(values_list[i]):
+						print (keys_list[i], '-', values_list[i])
 
-			print ('Модели автомобилей с мощностью в промежутке между', P1,'и', P2)
-			for j in range(len(values_list)):
-				if int(P1) < int(values_list[j]) < int(P2):
-					print (keys_list[j])
-			sys.exit(0)
+				print ('Модели автомобилей с мощностью в промежутке между', P1,'и', P2)
+				for i in range(len(values_list)):
+					if int(P1) < int(values_list[i]) < int(P2):
+						print (keys_list[i], '-', values_list[i])
+				sys.exit(0)
 
-		else:
-			print ('Должны быть только цифры')	
+			else:
+				print ('Должны быть только цифры')	
 
+# общая функция поиска
 def s_earch():
 	while True:
 		wtd1=in_out('Внимание! Регистр учитывается!\nПоиск по мощности (введите P) или по марке(введите М)? ')
@@ -156,7 +164,6 @@ def s_earch():
 while True:
 	wtd=in_out('Поиск или Работа с данным?:')
 	if wtd == 'Работа' or wtd == 'работа' or wtd == 'Работа с данными' or wtd == 'работа с данными':
-		allcars = pickle_load(flnm)
 		data = proverka(cycle)
 		break
 	elif wtd == 'Поиск' or wtd == 'поиск':
@@ -164,11 +171,6 @@ while True:
 	else:
 		print ('Ошибка, попробуйте еще раз')
  
-
-
-
-
-
 if len(allcars) == 0:
 	allcars = data
 else:
