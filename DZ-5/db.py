@@ -1,4 +1,3 @@
-import db, debug
 import pickle, sys, os
 
 # функция для ввода команды/данных 	
@@ -18,8 +17,8 @@ def alpha():
 # функция ввода можности автомобиля и проверки того, что она состоит только из цифр.
 def digit(): 
 	temp=in_out('Введите мощность автомобиля')
-	power=int(temp)
 	if temp.isdigit()==True:
+		power=int(temp)
 		return True, power
 	else:
 		return None, None
@@ -35,17 +34,3 @@ def pickle_load(flnm):
 		return allcars
 	else:
 		print ('Какая-то непонятно как здесь оказавшаяся ошибка')
-	finally:
-		print ('Внесите первые данные для создания файла')
-
-flnm = 'cars.pickle'
-allcars = pickle_load(flnm)
-values_list=[] # этот кусок кода - для фильтрации и поиска
-keys_list=[]
-if len(allcars) != 0:
-	try:		
-		for keys,values in allcars.items():
-			values_list.append(values)
-			keys_list.append(keys)
-	except:
-		print ('Что-то пошло не так')

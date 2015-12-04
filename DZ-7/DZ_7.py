@@ -48,7 +48,7 @@ class Telega:
 	def status(self):
 		self.speed = int(input('Введите скорость объекта: '))
 		if self.speed == 0 and self.wheels == 4:
-			print ('Телега cтоит и готов к движению')
+			print ('Телега cтоит и готова к движению')
 		elif self.wheels < 4:
 			print (self.model, 'стоит, так как сломан')
 		elif self.speed > 0 and self.wheels == 4:
